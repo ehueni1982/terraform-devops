@@ -19,6 +19,7 @@ variable "instance_tag" {
 }
 
 variable "user" {
+    ...
 
 }
 

@@ -1,6 +1,6 @@
 variable "ebs_zone" {
     type = string
-    defailt = "us-east-1a"
+    default = "us-east-1a"
     description = "The avaiblability zone of the EBS volume"
 }
 

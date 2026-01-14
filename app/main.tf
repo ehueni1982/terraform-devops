@@ -10,10 +10,10 @@ module "ec2" {
     instance_type = var.instance_type
     ami = var.ami
     key_name = var.key_name
-    security_group_name = module.security_group_name
-    instance_tag = var.instance_tag
+    security_group_name = module.sg.security_group_id
+    tags = var.instance_tag
     user = var.user
-    tags = var.tags
+    
 }
 
 module "eip" {
@@ -23,19 +23,23 @@ module "eip" {
 
 module "ebs" {
     source = "../modules/ebs"
-    availability_zone = var.availability_zone
+    ebs_zone = var.ebs_zone
     ebs_size = var.ebs_size
     ebs_tag = var.ebs_tag
 }
 
 resource "aws_eip_association" "eip_association" {
-    instance_id = 
-    allocation_id = 
+    instance_id = module.ec2.ec2_id
+    allocation_id = module.eip.eip_id
 }
 
 resource "aws_volume_attachment" "ebs_attachment" {
     device_name = "/dev/sdh"
-    volume_id = 
-    instance_id = 
+    volume_id = module.ebs.ebs_id
+    instance_id = module.ec2.ec2_id
+
+} 
+
+variable "eip_tag" {
     
 }

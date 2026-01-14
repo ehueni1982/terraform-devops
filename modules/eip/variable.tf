@@ -3,5 +3,5 @@ variable "eip_tag" {
     default = {
         Name = "eip"
     }
-    description = "The tag for the elastic ip"
+    description = "The tag for the elastic ip eip"
 }
